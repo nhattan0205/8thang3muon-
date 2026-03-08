@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chúc mừng 8/3</title>
+
+<style>
+
+body{
+margin:0;
+overflow:hidden;
+background:#ff7aa8;
+font-family:Arial;
+text-align:center;
+}
+
+/* THIỆP */
+
+.card{
+position:absolute;
+top:45%;
+left:50%;
+transform:translate(-50%,-50%);
+background:#ff9fc2;
+padding:50px;
+border-radius:20px;
+border:6px solid white;
+box-shadow:0 0 30px #ff4f91;
+max-width:700px;
+}
+
+/* hoa trong thiệp */
+
+.flower{
+font-size:40px;
+margin:10px;
+}
+
+/* chữ trong thiệp */
+
+.text{
+color:white;
+font-size:24px;
+line-height:40px;
+}
+
+/* dòng xin lỗi */
+
+.apology{
+position:absolute;
+bottom:60px;
+width:100%;
+text-align:center;
+font-size:26px;
+color:white;
+display:none;
+}
+
+/* hộp quà */
+
+.gift-box{
+position:absolute;
+bottom:60px;
+left:50%;
+transform:translateX(-50%);
+cursor:pointer;
+text-align:center;
+}
+
+.gift{
+font-size:100px;
+animation:shake 2s infinite;
+}
+
+.gift-text{
+color:white;
+font-size:22px;
+}
+
+@keyframes shake{
+0%{transform:rotate(0)}
+25%{transform:rotate(5deg)}
+50%{transform:rotate(-5deg)}
+75%{transform:rotate(5deg)}
+100%{transform:rotate(0)}
+}
+
+/* hoa tim rơi */
+
+.fall{
+position:absolute;
+top:-50px;
+font-size:26px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh);
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card" style="display:none">
+
+<div class="flower">🌸🌸🌸</div>
+
+<div class="text" id="text"></div>
+
+<div class="flower">🌸🌸🌸</div>
+
+</div>
+
+<div class="apology" id="apology">
+xinnn lỗi vì những món quà trễ này nhaaa 🥺💖🌸
+</div>
+
+<div class="gift-box" onclick="openGift()">
+<div class="gift">🎁</div>
+<div class="gift-text">xtien hãy mở ra đii neee</div>
+</div>
+
+<script>
+
+let message = `Chúc Xuân Tiên một ngày 8/3 luôn tươi như hoa,
+khỏe như voi và yêu đời như chim sẻ nhé.
+Luôn hạnh phúc, vui vẻ bên gia đình và bạn bè nhaaa ❤️
+
+Nếu thế giới này có 10 thiên thần:
+5 thiên thần đang chơi đùa,
+4 thiên thần đang nói chuyện
+và 1 thiên thần đang đọc dòng chữ này.
+
+Mặc dù tui hăm biết nói những lời ngọt ngào,
+hơi ngại nhưng mà tui sẽ luôn ở đây
+và hi vọng sẽ lunn là người làm cho xtien
+vui mỗi khi bùnnn.`
+
+let i = 0
+
+function openGift(){
+document.querySelector(".gift-box").style.display="none"
+document.getElementById("card").style.display="block"
+typeWriter()
+}
+
+function typeWriter(){
+if(i < message.length){
+document.getElementById("text").innerHTML += message.charAt(i)
+i++
+setTimeout(typeWriter,40)
+}else{
+document.getElementById("apology").style.display="block"
+}
+}
+
+/* hoa + tim rơi */
+
+function createFall(){
+let item=document.createElement("div")
+item.className="fall"
+
+let icons=["🌸","🌺","💮","❤️","💖"]
+item.innerHTML=icons[Math.floor(Math.random()*icons.length)]
+
+item.style.left=Math.random()*100+"vw"
+item.style.animationDuration=(4+Math.random()*4)+"s"
+
+document.body.appendChild(item)
+
+setTimeout(()=>{item.remove()},8000)
+}
+
+setInterval(createFall,300)
+
+</script>
+
+</body>
+</html>
